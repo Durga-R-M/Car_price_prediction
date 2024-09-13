@@ -1,12 +1,17 @@
+# sourcery skip: switch
 import streamlit as st 
 import pandas as pd 
-import pickle
-#from sklearn.linear_model import LinearRegression
+import numpy as np 
+import joblib
+
+from sklearn.linear_model import LinearRegression
+from streamlit_extras.let_it_rain import rain 
+
 
 r=st.sidebar.radio('Main Menu',['Home','Car Price Prediction'])
 
 if r == 'Home':
-    st.title('CARDEKHO - USED CAR PRICE PREDICTION')
+    st.title('CARDEKHO - USED CAR PRICE PREDICTION :car:')
     st.subheader("Data has been taken from the Cardekho website and processed for your usage using Machine Learning")
     st.markdown("*you can predict the car price of your preferred model here* :sunglasses:")
     st.image("C:/Users/hp/Desktop/Cardekho_Project/cardekho_logo.png")
@@ -52,7 +57,7 @@ elif r== 'Car Price Prediction':
         p3=1
 
     p4=right_column.selectbox("How much owners previously owned had the car?",('0', '1', '2', '3', '4', '5'))
-    p5=left_column.slider("How many kilometers driven?",0,2000000)
+    p5=left_column.slider("How many kilometers driven?",0,500000)
     p6=right_column.slider("Which year the car model belongs to",1985,2023)
     s7=left_column.selectbox("Which car model brand you prefer?",('Maruti', 'Nissan', 'Hyundai', 'Honda', 'Mercedes-Benz', 'BMW',
        'Ford', 'Tata', 'Jeep', 'Audi', 'Toyota', 'Mahindra', 'Renault',
@@ -138,10 +143,9 @@ elif r== 'Car Price Prediction':
     p9=left_column.slider("How much engine displacement you prefer?",6,5000)
     p10=right_column.slider("How much mileage you prefer?",7,35)
 
-    # Use Pickle to get Trained model file
-    with open("lrmodel.pkl","rb") as trainedFile:
-        carprice_model = pickle.load(trainedFile) 
-                    
+    # load the model from disk
+    model=joblib.load('C:/Users/hp/test/car_price_predictor')
+    
     data_new=pd.DataFrame({
         'FuelType':p1,	
         'BodyType':p2,	
@@ -157,5 +161,9 @@ elif r== 'Car Price Prediction':
     
     if st.button('Predict'):
         pred = model.predict(data_new)
-        st.balloons()
-        st.success("The estimated used car price is {} Lakhs".format(pred[0]))
+        #st.balloons()
+        #st.snow()
+        
+        #emojirain()
+        st.success("The estimated used car price is {:.2f} Lakhs".format(pred[0]))
+        st.cache_data.clear()
