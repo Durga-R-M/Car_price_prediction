@@ -14,7 +14,7 @@ if r == 'Home':
     st.title('CARDEKHO - USED CAR PRICE PREDICTION :car:')
     st.subheader("Data has been taken from the Cardekho website and processed for your usage using Machine Learning")
     st.markdown("*you can predict the car price of your preferred model here* :sunglasses:")
-    st.image("C:/Users/hp/Desktop/Cardekho_Project/cardekho_logo.png")
+    st.image("cardekho_logo.png")
 elif r== 'Car Price Prediction':
     left_column,right_column=st.columns(2)
     s1=left_column.selectbox("What is the Fuel type of the car?",('Petrol', 'Diesel', 'Electric', 'Cng', 'Lpg'))
@@ -144,7 +144,7 @@ elif r== 'Car Price Prediction':
     p10=right_column.slider("How much mileage you prefer?",7,35)
 
     # load the model from disk
-    model=joblib.load('C:/Users/hp/test/car_price_predictor_xg')
+    model=joblib.load('car_price_predictor_xg')
     
     data_new=pd.DataFrame({
         'FuelType':p1,	
