@@ -1,4 +1,5 @@
 streamlit
 pandas
-pickle
 joblib
+xgboost
+streamlit_extras
