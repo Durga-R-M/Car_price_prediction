@@ -162,15 +162,5 @@ elif r== 'Car Price Prediction':
     if st.button('Predict'):
         pred = model.predict(data_new)
         st.balloons()
-        st.snow()
         
-        def emojirain():
-            rain(
-                emoji="❤️",
-                font_size=54,
-                falling_speed=5,
-                animation_length="infinite",
-    )
-        emojirain()
         st.success("The estimated used car price is {:.2f} Lakhs".format(pred[0]))
-        #st.cache_data.clear()
