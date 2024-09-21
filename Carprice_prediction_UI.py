@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np 
 import joblib
 
-from sklearn.linear_model import LinearRegression
+from xgboost import XGBRegressor
 from streamlit_extras.let_it_rain import rain 
 
 
@@ -56,7 +56,7 @@ elif r== 'Car Price Prediction':
     elif s3=="Manual":
         p3=1
 
-    p4=right_column.selectbox("How much owners previously owned had the car?",('0', '1', '2', '3', '4', '5'))
+    p4=right_column.selectbox("How much owners previously owned had the car?",(0,1,2,3,4,5))
     p5=left_column.slider("How many kilometers driven?",0,500000)
     p6=right_column.slider("Which year the car model belongs to",1985,2023)
     s7=left_column.selectbox("Which car model brand you prefer?",('Maruti', 'Nissan', 'Hyundai', 'Honda', 'Mercedes-Benz', 'BMW',
@@ -144,7 +144,7 @@ elif r== 'Car Price Prediction':
     p10=right_column.slider("How much mileage you prefer?",7,35)
 
     # load the model from disk
-    model=joblib.load('C:/Users/hp/test/car_price_predictor')
+    model=joblib.load('C:/Users/hp/test/car_price_predictor_xg')
     
     data_new=pd.DataFrame({
         'FuelType':p1,	
@@ -154,9 +154,9 @@ elif r== 'Car Price Prediction':
         'OwnerNo':p4,
         'ModelBrand':p7,
         'ModelYear':p6,
+        'Engine':p9,
         'Mileage':p10,
-        'City':p8,
-        'Engine':p9
+        'City':p8
     },index=[0])
     
     if st.button('Predict'):
@@ -166,4 +166,4 @@ elif r== 'Car Price Prediction':
         
         #emojirain()
         st.success("The estimated used car price is {:.2f} Lakhs".format(pred[0]))
-        st.cache_data.clear()
+        #st.cache_data.clear()
