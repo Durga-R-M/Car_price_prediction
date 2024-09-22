@@ -2,4 +2,3 @@ streamlit
 pandas
 joblib
 xgboost
-streamlit_extras
