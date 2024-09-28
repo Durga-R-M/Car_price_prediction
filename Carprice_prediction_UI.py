@@ -5,7 +5,7 @@ import numpy as np
 import joblib
 
 from xgboost import XGBRegressor
-from streamlit_extras.let_it_rain import rain 
+#from streamlit_extras.let_it_rain import rain 
 
 
 r=st.sidebar.radio('Main Menu',['Home','Car Price Prediction'])
