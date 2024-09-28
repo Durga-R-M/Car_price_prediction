@@ -9,12 +9,13 @@ from streamlit_extras.let_it_rain import rain
 
 
 r=st.sidebar.radio('Main Menu',['Home','Car Price Prediction'])
-
+#Home Page
 if r == 'Home':
     st.title('CARDEKHO - USED CAR PRICE PREDICTION :car:')
     st.subheader("Data has been taken from the Cardekho website and processed for your usage using Machine Learning")
     st.markdown("*you can predict the car price of your preferred model here* :sunglasses:")
     st.image("cardekho_logo.png")
+#Second page
 elif r== 'Car Price Prediction':
     left_column,right_column=st.columns(2)
     s1=left_column.selectbox("What is the Fuel type of the car?",('Petrol', 'Diesel', 'Electric', 'Cng', 'Lpg'))
